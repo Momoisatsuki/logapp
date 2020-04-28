@@ -12,7 +12,7 @@ reservations = client.describe_instances()['Reservations']
 for reservation in reservations:
     for instance in reservation['Instances']:
         for tag in instance['Tags']:
-            if tag['Key'] == "TNservice":
+            if tag['Key'] == "TNService":
                 if tag["Value"] == "Automotive":
                     for tag in instance['Tags']:
                         if tag['Key'] == "Name":
