@@ -1,11 +1,11 @@
 #!/usr/local/bin/python3
 import boto3
 import json
-
+regions = ['us-east-1','us-west-2','ap-northeast-2','eu-central-1']
 inventory = {}
 
 def get_cluster(region):
-    client = boto3.client('ec2', region_name="us-east-1")
+    client = boto3.client('ec2', region_name=region)
     reservations = client.describe_instances()['Reservations']
     for reservation in reservations:
         for instance in reservation['Instances']:
@@ -23,7 +23,7 @@ def get_cluster(region):
 
 
 if __name__ == "__main__":
-    for region in ['us-east-1','us-west-2','ap-northeast-2','eu-central-1']:
+    for region in regions:
         get_cluster(region)
 
 print(inventory)
