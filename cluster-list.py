@@ -18,9 +18,9 @@ for reservation in reservations:
                         if tag['Key'] == "Name":
                             cluster = tag['Value'].split('-')[1]
                             servername = tag['Value']
+                            print(cluster)
+                            print(servername)
                             if servername in inventory:
                                 inventory[cluster].append(servername)
                             else:
                                 inventory[cluster] = [cluster]
-
-print(json.dumps(inventory))
