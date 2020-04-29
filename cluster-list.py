@@ -6,6 +6,7 @@ inventory = {}
 
 
 def get_cluster(region):
+    global count
     client = boto3.client('ec2', region_name=region)
     reservations = client.describe_instances()['Reservations']
     for reservation in reservations:
@@ -27,7 +28,6 @@ def get_cluster(region):
 
 
 if __name__ == "__main__":
-    global count
     count = 0
     for region in regions:
         get_cluster(region)
