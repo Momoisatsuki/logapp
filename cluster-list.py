@@ -28,6 +28,7 @@ def get_cluster(region):
 
 
 if __name__ == "__main__":
+    global count
     for region in regions:
         get_cluster(region)
 print('total server count is: ' + count)
