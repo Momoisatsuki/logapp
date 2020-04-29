@@ -9,7 +9,7 @@ def get_cluster(region):
     reservations = client.describe_instances()['Reservations']
     for reservation in reservations:
         for instance in reservation['Instances']:
-            if instance[0].__contains__('Tags'):
+            if instance.__contains__('Tags'):
                 for tag in instance['Tags']:
                     if tag['Key'] == "TNService":
                         if tag["Value"] == "Automotive":
