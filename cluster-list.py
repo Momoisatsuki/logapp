@@ -3,7 +3,7 @@ import boto3
 import json
 regions = ['us-east-1','us-west-2','ap-northeast-2','eu-central-1']
 inventory = {}
-count = int(0)
+count = 0
 
 def get_cluster(region):
     client = boto3.client('ec2', region_name=region)
@@ -27,6 +27,7 @@ def get_cluster(region):
 
 
 if __name__ == "__main__":
+    global count
     for region in regions:
         get_cluster(region)
 print('total server count is: ' + count)
