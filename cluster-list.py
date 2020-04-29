@@ -9,17 +9,18 @@ def get_cluster(region):
     reservations = client.describe_instances()['Reservations']
     for reservation in reservations:
         for instance in reservation['Instances']:
-            for tag in instance['Tags']:
-                if tag['Key'] == "TNService":
-                    if tag["Value"] == "Automotive":
-                        for tag in instance['Tags']:
-                            if tag['Key'] == "Name":
-                                cluster = tag['Value'].split('-')[1]
-                                servername = tag['Value']
-                                if cluster in inventory:
-                                    inventory[cluster].append(servername)
-                                else:
-                                    inventory[cluster] = [servername]
+            if instance[0].__contains__('Tags'):
+                for tag in instance['Tags']:
+                    if tag['Key'] == "TNService":
+                        if tag["Value"] == "Automotive":
+                            for tag in instance['Tags']:
+                                if tag['Key'] == "Name":
+                                    cluster = tag['Value'].split('-')[1]
+                                    servername = tag['Value']
+                                    if cluster in inventory:
+                                        inventory[cluster].append(servername)
+                                    else:
+                                        inventory[cluster] = [servername]
 
 
 if __name__ == "__main__":
