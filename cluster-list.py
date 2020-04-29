@@ -15,16 +15,17 @@ def get_cluster(region):
                         if tag["Value"] == "Automotive":
                             for tag in instance['Tags']:
                                 if tag['Key'] == "Name":
-                                    cluster = tag['Value'].split('-')[1]
-                                    servername = tag['Value']
-                                    if cluster in inventory:
-                                        inventory[cluster].append(servername)
-                                    else:
-                                        inventory[cluster] = [servername]
+                                    if tag['Value'].split('-')[0].startwith('ec'):
+                                        cluster = tag['Value'].split('-')[1]
+                                        servername = tag['Value']
+                                        if cluster in inventory:
+                                            inventory[cluster].append(servername)
+                                        else:
+                                            inventory[cluster] = [servername]
 
 
 if __name__ == "__main__":
     for region in regions:
         get_cluster(region)
 
-print(inventory)
+print(json.dumps(inventory))
