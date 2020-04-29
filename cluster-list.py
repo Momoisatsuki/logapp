@@ -15,7 +15,7 @@ def get_cluster(region):
                         if tag["Value"] == "Automotive":
                             for tag in instance['Tags']:
                                 if tag['Key'] == "Name":
-                                    if tag['Value'].split('-')[0].startwith('ec'):
+                                    if tag['Value'].split('-')[0].startswith('ec'):
                                         cluster = tag['Value'].split('-')[1]
                                         servername = tag['Value']
                                         if cluster in inventory:
