@@ -31,5 +31,5 @@ if __name__ == "__main__":
     count = 0
     for region in regions:
         get_cluster(region)
-print('total server count is: ' + count)
+print('total server count is: ' + str(count) )
 print(json.dumps(inventory))
